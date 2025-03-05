@@ -11,6 +11,18 @@ class Passenger {
         this.name = name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
+    }
+
     public String getName() {
         return name;
     }
