@@ -1,72 +1,54 @@
 package org.dc.flightmanagement;
 
-
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Flight {
-    // Instance properties.
-    private int flightNumber;
-    private Date departureTime;
-    private int flightDuration = 60; // Default value of 60 minutes.
+    private String flightNumber;
+    private Airline airline;
+    private List<Passenger> passengers = new ArrayList<>();
 
-    // Static property.
-    private static int flightCount = 0;
-
-    // Constructor.
-    public Flight(int flightNumber, Date departureTime) {
-        this.flightNumber = flightNumber;
-        this.departureTime = departureTime;
-        flightCount++; // Increment flight count.
-    }
-    public Flight(){
-        flightCount++;// Increent flight count.
-    }
-
-    // Getters and setters for instance variables.
-    public int getFlightNumber() {
+    public String getFlightNumber() {
         return flightNumber;
     }
 
-    public void setFlightNumber(int flightNumber) {
+    public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
     }
 
-    public Date getDepartureTime() {
-        return departureTime;
+    public Airline getAirline() {
+        return airline;
     }
 
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 
-
-    public int getFlightDuration() {
-        return flightDuration;
+    public List<Passenger> getPassengers() {
+        return passengers;
     }
 
-    public void setFlightDuration(int flightDuration) {
-        this.flightDuration = flightDuration;
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
     }
 
-    // Static method to get the total number of flights.
-    public static int getFlightCount() {
-        return flightCount;
+    public Flight(String flightNumber, Airline airline) {
+        this.flightNumber = flightNumber;
+        this.airline = airline;
+        airline.addFlight(this);
     }
 
-    // Method to delay the flight time.
-    public void delayFlight(int numberOfMinutes) {
-        // Update departure time by adding the specified minutes.
-        // Using long data type as the default time is in milliseconds.
-        long currentDepartureTime = departureTime.getTime();
-        // There is a conversion here for milliseconds, too.
-        long newDepartureTime = currentDepartureTime + (numberOfMinutes * 60 * 1000);
-        departureTime.setTime(newDepartureTime);
+    public void addPassenger(Passenger passenger) {
+        passengers.add(passenger);
+        passenger.addFlight(this);
     }
 
-    // Method to calculate arrival time based on departure time and duration.
-    public Date getArrivalTime() {
-        // Conversion based on time in milliseconds.
-        long arrivalTime = departureTime.getTime() + (flightDuration * 60 * 1000);
-        return new Date(arrivalTime);
+    public void displayDetails() {
+        System.out.println("Flight Number: " + flightNumber);
+        System.out.println("Airline: " + airline.getName());
+        System.out.println("Passengers: ");
+        for (Passenger p : passengers) {
+            System.out.println(" - " + p.getName());
+        }
     }
 }

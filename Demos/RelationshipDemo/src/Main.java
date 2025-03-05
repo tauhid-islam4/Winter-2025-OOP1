@@ -1,14 +1,12 @@
-import org.dc.flightmanagement.Flight;
-
 import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
         // Create an object of the Flight class.
 // This is done by calling its constructor, with the keyword “new”.
-        Flight myFlight = new Flight(123, new Date());
+        FlightDemo myFlight = new FlightDemo(123, new Date());
 
-        Flight mySecondFlight = new Flight();
+        FlightDemo mySecondFlight = new FlightDemo();
 
         mySecondFlight.setFlightNumber(1234);
 
@@ -27,7 +25,7 @@ public class Main {
 // Print the new departure time.
         System.out.println("New departure time after delay: " + myFlight.getDepartureTime());
 
-        System.out.println("Total number of flights are : "+ Flight.getFlightCount());
+        System.out.println("Total number of flights are : "+ FlightDemo.getFlightCount());
 
 
     }
