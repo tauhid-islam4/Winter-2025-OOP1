@@ -3,7 +3,7 @@ package org.dc.flightmanagement;
 import java.util.ArrayList;
 import java.util.List;
 
-class Passenger {
+public class Passenger {
     private String name;
     private List<Flight> flights = new ArrayList<>();
 
